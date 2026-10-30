@@ -1,6 +1,6 @@
 ![homework-time-calc banner](banner.png)
 
-# homework-time-calc
+# Homework-Time-Calculator
 
 Homework time calculator. A small interactive Python script: you list your
 homework assignments, say how many minutes each one will take, and it prints
