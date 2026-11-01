@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 40" role="img" aria-label="Kelp blade separator with float">
+<path d="M60,22 Q600,6 1190,20 Q600,30 62,28 Z" fill="#2e8c56"/>
+<line x1="30" y1="4" x2="30" y2="30" stroke="#3cb371" stroke-width="7"/>
+<circle cx="400" cy="18" r="13" fill="#e0b440" stroke="#f6d66e" stroke-width="2"/>
+</svg>

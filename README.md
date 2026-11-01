@@ -1,10 +1,18 @@
-![homework-time-calc banner](banner.png)
+![Intro: kelp forest at slack tide, plumb stipes, silver fish, one gold float sunk to the sand](intro-banner.png)
+
 
 # Homework-Time-Calculator
+
+![Banner](banner.png)
+
+![Scene](scene.svg)
 
 Homework time calculator. A small interactive Python script: you list your
 homework assignments, say how many minutes each one will take, and it prints
 the total.
+
+
+![Separator](sep-heavy.svg)
 
 ## Run
 
@@ -15,6 +23,8 @@ python3 time.py
 No dependencies beyond Python 3.
 
 ## How it works
+
+> **Board notice.** An hour and a half must arrive as ninety. The board answers in the minutes it was fed, and it keeps no record: nothing is saved between runs.
 
 1. Type one assignment name per line at the `>` prompt. Type `done` in
    any case (or end the input, for example with Ctrl-D) when the list is

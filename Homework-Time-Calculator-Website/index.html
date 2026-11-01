@@ -3,161 +3,85 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Homework Time Calculator: what it is, how it runs, where it stops</title>
-<meta name="description" content="Homework Time Calculator is one of my projects. The README in the repo is short, so this page sticks to what the files themselves show.">
+<title>Homework-Time-Calculator: the tally board at the forest edge</title>
 <style>
-:root {
-  --bg: #0a0e1a; --panel: #11182c; --ink: #e9edf5;
-  --mut: #16203b;
-  --acc: #ff8c42; --acc2: #ffc46b;
-  --line: #11182c;
-}
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink);
-  font-family: 'Palatino Linotype', Palatino, serif; line-height: 1.55; }
-code, pre, .mono { font-family: 'Menlo', monospace; }
-a { color: var(--acc2); }
-.hero { padding: 3rem 6vw 1rem; }
-.hero img.banner { width: 100%; height: auto; border: 1px solid var(--line);
-  border-radius: 10px; }
-.logo { width: 92px; height: 92px; border-radius: 18px;
-  border: 1px solid var(--line); }
-h1 { font-size: 2.4rem; margin: 0.4em 0 0.1em; }
-h2 { border-bottom: 2px solid var(--acc); padding-bottom: 0.2em;
-  margin-top: 2em; }
-.lede { font-size: 1.15rem; max-width: 62ch; }
-main { padding: 0 6vw 3rem; max-width: 1180px; margin: 0 auto; }
-.grid { display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
-.card { background: var(--panel); border: 1px solid var(--line);
-  border-radius: 12px; padding: 1rem 1.2rem; }
-.card.pop { animation: rise 0.7s ease both; }
-@keyframes rise { from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; } }
-pre.code { background: #101014; color: #e8e6df; padding: 1rem 1.2rem;
-  border-radius: 12px; overflow-x: auto; font-size: 0.86rem;
-  border-left: 5px solid var(--acc); }
-table { border-collapse: collapse; width: 100%; }
-td, th { border-bottom: 1px solid var(--line); padding: 0.45rem 0.6rem;
-  text-align: left; }
-.shots { display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.shots img { width: 100%; height: auto; border: 1px solid var(--line);
-  border-radius: 10px; background: #f4f1e8; }
-footer { padding: 2rem 6vw; border-top: 1px solid var(--line);
-  color: var(--mut); }
-.rail { display: flex; gap: 1.2rem; align-items: flex-start; }
-.rail nav { position: sticky; top: 1rem; min-width: 180px; }
-@media (max-width: 760px) { .rail { flex-direction: column; }
-  .rail nav { position: static; } }
-@media (prefers-reduced-motion: reduce) {
-  .card.pop { animation: none; } * { scroll-behavior: auto; } }
+@font-face{font-family:'MatrixType';src:url('fonts/MatrixType-Regular.ttf') format('truetype')}
+@font-face{font-family:'Alegreya Sans';src:url('fonts/AlegreyaSans-Regular.ttf') format('truetype')}
+@font-face{font-family:'Alegreya Sans';src:url('fonts/AlegreyaSans-Bold.ttf') format('truetype');font-weight:700}
+*{box-sizing:border-box}
+body{margin:0;background:#081426;color:#dcefe2;font-family:'Alegreya Sans',sans-serif;line-height:1.6}
+.strip{position:fixed;left:0;top:0;bottom:0;width:54px;background:#0a1c33;border-right:2px solid #c9a13b;overflow:hidden}
+.strip i{display:block;width:7px;height:120px;background:#3cb371;margin:26px auto;border-radius:4px;position:relative}
+.strip i::after{content:'';position:absolute;left:-6px;top:34px;width:19px;height:19px;border-radius:50%;background:#d4a437}
+.page{margin-left:54px}
+.hero{max-width:920px;margin:0 auto;padding:44px 22px 10px}
+.board{background:#0d2140;border:3px solid #8a8d90;padding:26px 28px}
+.board h1{font-family:'MatrixType',monospace;font-size:2rem;color:#aef0c0;margin:0 0 14px;letter-spacing:1px}
+.row{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #33507a;padding:9px 2px}
+.row b{color:#f2cd6b}
+.mini{margin-top:18px;background:#0a1c33;padding:14px 18px;font-size:1.05rem}
+.mini .sum{border-top:2px solid #c9a13b;margin-top:8px;padding-top:8px;text-align:right;color:#aef0c0}
+main{max-width:920px;margin:0 auto;padding:10px 22px 50px}
+h2{font-family:'MatrixType',monospace;color:#aef0c0;font-size:1.35rem;margin-top:2em}
+.card{background:#0d2140;border:2px solid #8a8d90;padding:16px 20px;margin:14px 0}
+.card .fig{text-align:right;color:#f2cd6b;font-size:1.2rem}
+pre{background:#060f1e;color:#dcefe2;padding:14px 18px;overflow-x:auto;border-left:4px solid #c9a13b}
+code{font-family:Menlo,monospace}
+a{color:#9aa3ab;text-decoration:none}
+a:hover{color:#7ce8a4;text-decoration:underline}
+.buoy{display:inline-flex;align-items:center;gap:12px;margin:10px 14px 4px 0;color:#dcefe2;font-weight:700}
+.buoy .oval{width:52px;height:34px;border-radius:50%;background:#d4a437;border:3px solid #2e8c56;position:relative;transition:filter .2s,transform .12s;flex:0 0 52px}
+.buoy .oval::after{content:'';position:absolute;left:50%;top:-9px;width:8px;height:8px;margin-left:-4px;background:#b98f2e;border-radius:2px}
+.buoy:hover .oval{filter:brightness(1.3)}
+.buoy:active .oval{transform:translateY(3px)}
+.blade{height:12px;background:linear-gradient(90deg,#2e8c56,#2e8c56 88%,transparent);border-radius:0 50% 50% 0;margin:34px 0 6px;position:relative}
+.blade.major::after{content:'';position:absolute;left:33%;top:-6px;width:22px;height:22px;border-radius:50%;background:#d4a437}
+img.shot{width:100%;height:auto;border:2px solid #8a8d90;background:#f4f1e8}
+footer{max-width:920px;margin:0 auto;padding:20px 22px 40px;color:#9aa3ab}
 </style>
 </head>
-<body class="layout-note">
-<!-- This page exists for Homework-Time-Calculator alone: the layout (notebook),
-     the colors, and the type were picked for this project, not
-     shared with the other project pages. The code block below is
-     copied from the file it names, line for line. If it looks
-     plain, that is because the project is plain, and I would
-     rather the page match the project than dress it up. The one
-     thing I will not do here is oversell: what this project does
-     not do is stated on the page, not hidden from it. -->
+<body>
+<div class="strip" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="page">
 <header class="hero">
-  <img class="logo" src="assets/logo.png" alt="Homework Time Calculator logo">
-  <img class="banner" src="assets/banner.png" alt="">
-  <h1>Homework Time Calculator</h1>
-  <p class="mono"><a href="https://github.com/Epsilon0xCell/Homework-Time-Calculator">github.com/Epsilon0xCell/Homework-Time-Calculator</a></p>
+<img src="https://raw.githubusercontent.com/Epsilon0xCell/Homework-Time-Calculator/main/banner.png" alt="Kelp forest with the tally board" style="width:100%;height:auto">
+<div class="board" style="margin-top:22px">
+<h1>Homework-Time-Calculator</h1>
+<div class="row"><span>Name the assignments, one per line</span><b>step 1</b></div>
+<div class="row"><span>Write done when the list closes</span><b>step 2</b></div>
+<div class="row"><span>Give the minutes for each one in turn</span><b>step 3</b></div>
+<div class="row"><span>Read the single total the board returns</span><b>step 4</b></div>
+<div class="mini">math, 10 minutes<br>english, 20 minutes<br>history, 15 minutes<div class="sum">It will take you 45 minutes to complete your homework.</div></div>
+</div>
+<a class="buoy" href="https://github.com/Epsilon0xCell/Homework-Time-Calculator"><span class="oval"></span>The repo on GitHub</a>
+<a class="buoy" href="#run"><span class="oval"></span>How a run goes</a>
 </header>
-
 <main>
-  <section class="rail">
-    <nav aria-label="on this page">
-      <p class="mono"><a href="#run">Run it</a><br>
-      <a href="#files">The files</a><br>
-      <a href="#sheets">The sheets</a><br>
-      <a href="https://github.com/Epsilon0xCell/Homework-Time-Calculator">The repo</a></p>
-    </nav>
-    <div>
-      <p class="lede">Homework Time Calculator is one of my projects. The README in the repo is short, so this page sticks to what the files themselves show.</p>
-      <div class="grid">
-        <div class="card pop"><h3>What it is</h3>
-          <p>Homework Time Calculator: 3 files, 35 counted
-          lines across Python 33, Markdown 2. One job, done in the
-          open, in files you can read.</p></div>
-        <div class="card pop"><h3>The biggest piece</h3>
-          <p><code>time.py</code> carries the most
-          lines. If the project grows, that file is where the growth
-          lands first, for better or worse.</p></div>
-        <div class="card pop"><h3>The honest gap</h3>
-          <p>No test files yet. That is the honest gap, and the roadmap in the visuals folder says what the first one should cover.</p></div>
-      </div>
-      <section id="run">
-        <h2>Run it</h2>
-        <p>The repo README has the exact commands for this one. The
-        shape is the shape for most of my projects: clone it, read the
-        top file first so you know what will happen, then run it on
-        something you do not mind breaking.</p>
-        <p class="mono">$ git clone https://github.com/Epsilon0xCell/Homework-Time-Calculator.git<br>$ cd Homework-Time-Calculator</p>
-      </section>
-      
-  <section aria-label="real code">
-    <h2>The code, as it sits in the repo</h2>
-    <p>From <code>time.py</code>, line 1 on. I did
-    not tidy it for the page. What you see is what the file has.</p>
-    <pre class="code"><code># CY83R-3X71NC710N
-# Homework Time Calculator
-
-
-homeworklist = []
-
-# Enter the name of each homework assignment and adds to the list until the user types done.
-
-homework = &quot;Enter the name of each homework assignment you have to do.&quot;
-print(&quot;Enter &#x27;done&#x27; when finished.&quot;)
-print(&quot;----------------------------&quot;)
-
-while not homework == &#x27;done&#x27;:
-    homework = input(&quot;&gt; &quot;)
-    homeworklist.append(homework)
-
-print(&quot;----------------------------&quot;)
-
-# Calculate time that it will take for each assignment
-
-# Sanitize input to prevent user from putting in invalid characters</code></pre>
-  </section>
-      <section id="files">
-        <h2>The files that matter</h2>
-        <table><tr><th>File</th><th>Lines</th></tr>
-        <tr><td><code>time.py</code></td><td>33</td></tr>
-        <tr><td><code>README.md</code></td><td>2</td></tr>
-        <tr><td><code>LICENSE</code></td><td>0</td></tr>
-        </table>
-        <p>Names doing the work: <span class="mono">no named functions in the snapshot</span>.</p>
-      </section>
-      <section id="sheets">
-        <h2>Drawn by hand</h2>
-        <p>I sketch my projects on notebook paper so I have to
-        understand them well enough to draw them. The full set,
-        with the counts and how they were counted, is the
-        <a href="https://github.com/Epsilon0xCell/Homework-Time-Calculator/tree/main/Homework-Time-Calculator-Visuals">Homework-Time-Calculator-Visuals</a>
-        folder in the repo. Nothing is drawn over the binder holes.
-        That is a rule, not a style.</p>
-        <div class="shots">
-          <img src="assets/architecture.png" alt="Hand drawn architecture sheet for Homework Time Calculator">
-          <img src="assets/flowchart.png" alt="Hand drawn flowchart sheet for Homework Time Calculator">
-          <img src="assets/product-map.png" alt="Hand drawn product map sheet for Homework Time Calculator">
-        </div>
-      </section>
-    </div>
-  </section>
+<div class="blade major"></div>
+<h2 id="run">The shore log: a run in ordinary language</h2>
+<p>The script is a small interactive Python program in <code>time.py</code>. It asks for one assignment name per line at the <code>&gt;</code> prompt, then asks how many minutes each one will take, then prints a single total: <code>It will take you X minutes to complete your homework.</code></p>
+<p>The word <code>done</code> does double duty. Typed in any case, it is both the last thing you enter in the list and the signal that closes it. The word itself is never counted as an assignment, blank lines are skipped, and ending the input, for example with Ctrl-D, closes the list the same way.</p>
+<div class="blade"></div>
+<h2>What the board does not do</h2>
+<div class="card"><p>It keeps no record. Nothing is saved between runs.</p><p class="fig">note one</p></div>
+<div class="card"><p>It converts nothing. It answers in the same minutes it was fed, so an hour and a half must arrive as ninety.</p><p class="fig">90, not 1.5 hours</p></div>
+<div class="card"><p>Bad figures are refused. Non-numeric input, negative numbers, and the values <code>nan</code> and <code>inf</code> are rejected with a message, and the same assignment is asked again. Decimals such as <code>1.5</code> are accepted.</p><p class="fig">asked again</p></div>
+<div class="blade major"></div>
+<h2 id="start">Start it, and a finished session</h2>
+<p>No dependencies beyond Python 3.</p>
+<pre>python3 time.py</pre>
+<p>A finished session, with input in order: math, english, done, 10, 20.</p>
+<pre>Enter 'done' when finished.
+----------------------------
+&gt; &gt; &gt; ----------------------------
+How many minutes will it take to work on each assignment?
+math: english: ----------------------------
+It will take you 30 minutes to complete your homework.</pre>
+<p>Tests: <code>python3 -m unittest</code> runs scripted-input cases in <code>test_time.py</code>. If the input ends in the middle of entering times, the script prints <code>Input ended before all times were entered.</code> and exits with status 1 instead of a traceback.</p>
+<p><a href="https://github.com/Epsilon0xCell/Homework-Time-Calculator/tree/main/Homework-Time-Calculator-Visuals">The visuals folder in the repo</a></p>
+<img class="shot" src="https://raw.githubusercontent.com/Epsilon0xCell/Homework-Time-Calculator/main/Homework-Time-Calculator-Visuals/flowchart.png" alt="Flowchart from the repo visuals folder">
 </main>
-<footer>
-  <p>Homework Time Calculator is one of my projects. This page was written
-  from the repo itself on 2026-10-30: the counts are the
-  repo's counts, the code is the repo's code, and the gaps are the
-  repo's gaps.</p>
-</footer>
+<footer>Homework-Time-Calculator, kept at the forest edge. Fonts: MatrixType (CC0 1.0, license beside the font file) and Alegreya Sans (SIL Open Font License 1.1).</footer>
+</div>
 </body>
 </html>
