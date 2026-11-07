@@ -1,9 +1,11 @@
-![Intro: kelp forest at slack tide, plumb stipes, silver fish, one gold float sunk to the sand](intro-banner.png)
+![Intro: the task cards now folded into a single tidy pile on the school desk, a mustard pencil resting on top, the red clock shape beside them showing the summed hour, cream and slate blue, flat mid-century schoolbook illustration](intro-banner.png)
 
 
 # Homework-Time-Calculator
 
-![Banner](banner.png)
+<p align="center"><img src="logo.png" alt="Homework-Time-Calculator logo: a neat stack of three slate blue exercise books in flat mid-century schoolbook illustration, a mustard pencil across the top book, a small red alarm clock beside the stack, on exercise book cream" width="200"></p>
+
+![Banner: a school desk in flat mid-century schoolbook illustration, a row of task cards standing in a line on the desk, each card's plain bar longer than the last, ending at one big cream total card with a red clock shape above it, slate blue, mustard and apple red on cream](banner.png)
 
 ![Scene](scene.svg)
 
