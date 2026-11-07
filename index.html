@@ -3,49 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Homework-Time-Calculator: the tally board at the forest edge</title>
+<title>Homework-Time-Calculator: the schoolbook desk</title>
 <style>
-@font-face{font-family:'MatrixType';src:url('fonts/MatrixType-Regular.ttf') format('truetype')}
-@font-face{font-family:'Alegreya Sans';src:url('fonts/AlegreyaSans-Regular.ttf') format('truetype')}
-@font-face{font-family:'Alegreya Sans';src:url('fonts/AlegreyaSans-Bold.ttf') format('truetype');font-weight:700}
+@font-face{font-family:'Bree Serif';src:url('fonts/BreeSerif-Regular.ttf') format('truetype')}
+@font-face{font-family:'Lato';src:url('fonts/Lato-Regular.ttf') format('truetype');font-weight:400}
+@font-face{font-family:'Lato';src:url('fonts/Lato-Bold.ttf') format('truetype');font-weight:700}
 *{box-sizing:border-box}
-body{margin:0;background:#081426;color:#dcefe2;font-family:'Alegreya Sans',sans-serif;line-height:1.6}
-.strip{position:fixed;left:0;top:0;bottom:0;width:54px;background:#0a1c33;border-right:2px solid #c9a13b;overflow:hidden}
-.strip i{display:block;width:7px;height:120px;background:#3cb371;margin:26px auto;border-radius:4px;position:relative}
-.strip i::after{content:'';position:absolute;left:-6px;top:34px;width:19px;height:19px;border-radius:50%;background:#d4a437}
+body{margin:0;background:#f4ecd7;color:#2e3d55;font-family:'Lato',sans-serif;line-height:1.6}
+.strip{position:fixed;left:0;top:0;bottom:0;width:54px;background:#efe3c2;border-right:4px double #c0392b;overflow:hidden}
+.strip i{display:block;width:16px;height:16px;background:#d9a51f;border:2px solid #b98a17;border-radius:50%;margin:30px auto}
 .page{margin-left:54px}
 .hero{max-width:920px;margin:0 auto;padding:44px 22px 10px}
-.board{background:#0d2140;border:3px solid #8a8d90;padding:26px 28px}
-.board h1{font-family:'MatrixType',monospace;font-size:2rem;color:#aef0c0;margin:0 0 14px;letter-spacing:1px}
-.row{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #33507a;padding:9px 2px}
-.row b{color:#f2cd6b}
-.mini{margin-top:18px;background:#0a1c33;padding:14px 18px;font-size:1.05rem}
-.mini .sum{border-top:2px solid #c9a13b;margin-top:8px;padding-top:8px;text-align:right;color:#aef0c0}
+.board{background:#36506e;border:3px solid #22344d;padding:26px 28px;color:#f8f2df;box-shadow:7px 7px 0 #d9a51f}
+.board h1{font-family:'Bree Serif',serif;font-weight:400;font-size:2rem;color:#fdf8ea;margin:0 0 14px;letter-spacing:.01em}
+.board .logo{width:84px;height:84px;border:3px solid #22344d;border-radius:6px;background:#f4ecd7;float:right;margin:0 0 10px 16px}
+.row{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #5d7592;padding:9px 2px}
+.row b{color:#eec95c;font-family:'Bree Serif',serif;font-weight:400}
+.mini{margin-top:18px;background:#f8f2df;color:#2e3d55;padding:14px 18px;font-size:1.05rem}
+.mini .sum{border-top:2px solid #c0392b;margin-top:8px;padding-top:8px;text-align:right;color:#b3352a;font-weight:700}
 main{max-width:920px;margin:0 auto;padding:10px 22px 50px}
-h2{font-family:'MatrixType',monospace;color:#aef0c0;font-size:1.35rem;margin-top:2em}
-.card{background:#0d2140;border:2px solid #8a8d90;padding:16px 20px;margin:14px 0}
-.card .fig{text-align:right;color:#f2cd6b;font-size:1.2rem}
-pre{background:#060f1e;color:#dcefe2;padding:14px 18px;overflow-x:auto;border-left:4px solid #c9a13b}
-code{font-family:Menlo,monospace}
-a{color:#9aa3ab;text-decoration:none}
-a:hover{color:#7ce8a4;text-decoration:underline}
-.buoy{display:inline-flex;align-items:center;gap:12px;margin:10px 14px 4px 0;color:#dcefe2;font-weight:700}
-.buoy .oval{width:52px;height:34px;border-radius:50%;background:#d4a437;border:3px solid #2e8c56;position:relative;transition:filter .2s,transform .12s;flex:0 0 52px}
-.buoy .oval::after{content:'';position:absolute;left:50%;top:-9px;width:8px;height:8px;margin-left:-4px;background:#b98f2e;border-radius:2px}
-.buoy:hover .oval{filter:brightness(1.3)}
+h2{font-family:'Bree Serif',serif;font-weight:400;color:#36506e;font-size:1.4rem;margin-top:2em}
+.card{background:#fbf6e6;border:2px solid #36506e;padding:16px 20px;margin:14px 0;box-shadow:4px 4px 0 rgba(54,80,110,.3)}
+.card .fig{text-align:right;color:#b3352a;font-family:'Bree Serif',serif;font-size:1.1rem}
+pre{background:#22344d;color:#f8f2df;padding:14px 18px;overflow-x:auto;border-left:5px solid #d9a51f}
+code{font-family:'Lato',sans-serif}
+a{color:#b3352a;text-decoration:none}
+a:hover{color:#36506e;text-decoration:underline}
+.buoy{display:inline-flex;align-items:center;gap:12px;margin:10px 14px 4px 0;color:#2e3d55;font-weight:700}
+.buoy .oval{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e0654f,#b3352a 70%);border:3px solid #8c2718;position:relative;transition:filter .2s,transform .12s;flex:0 0 40px}
+.buoy .oval::after{content:'';position:absolute;left:50%;top:-10px;width:5px;height:10px;margin-left:-2px;background:#4c7a3f;border-radius:2px;transform:rotate(18deg)}
+.buoy:hover .oval{filter:brightness(1.25)}
 .buoy:active .oval{transform:translateY(3px)}
-.blade{height:12px;background:linear-gradient(90deg,#2e8c56,#2e8c56 88%,transparent);border-radius:0 50% 50% 0;margin:34px 0 6px;position:relative}
-.blade.major::after{content:'';position:absolute;left:33%;top:-6px;width:22px;height:22px;border-radius:50%;background:#d4a437}
-img.shot{width:100%;height:auto;border:2px solid #8a8d90;background:#f4f1e8}
-footer{max-width:920px;margin:0 auto;padding:20px 22px 40px;color:#9aa3ab}
+.blade{height:12px;background:repeating-linear-gradient(90deg,#36506e 0 2px,transparent 2px 26px);border-bottom:2px solid #36506e;margin:34px 0 6px;position:relative}
+.blade.major::after{content:'';position:absolute;left:33%;top:-5px;width:20px;height:20px;border-radius:50%;background:#d9a51f;border:2px solid #b98a17}
+img.shot{width:100%;height:auto;border:2px solid #36506e;background:#fbf6e6}
+footer{max-width:920px;margin:0 auto;padding:20px 22px 40px;color:#7a6c4f}
 </style>
 </head>
 <body>
 <div class="strip" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <div class="page">
 <header class="hero">
-<img src="https://raw.githubusercontent.com/Epsilon0xCell/Homework-Time-Calculator/main/banner.png" alt="Kelp forest with the tally board" style="width:100%;height:auto">
+<img src="assets/banner.png" alt="A school desk in flat mid-century schoolbook illustration: a row of task cards standing in a line on the desk, each card's plain bar longer than the last, ending at one big cream total card with a red clock shape above it" style="width:100%;height:auto">
 <div class="board" style="margin-top:22px">
+<img class="logo" src="assets/logo.png" alt="Homework-Time-Calculator logo: a neat stack of three slate blue exercise books, a mustard pencil across the top book, a small red alarm clock beside the stack">
 <h1>Homework-Time-Calculator</h1>
 <div class="row"><span>Name the assignments, one per line</span><b>step 1</b></div>
 <div class="row"><span>Write done when the list closes</span><b>step 2</b></div>
@@ -58,7 +59,7 @@ footer{max-width:920px;margin:0 auto;padding:20px 22px 40px;color:#9aa3ab}
 </header>
 <main>
 <div class="blade major"></div>
-<h2 id="run">The shore log: a run in ordinary language</h2>
+<h2 id="run">The exercise book: a run in ordinary language</h2>
 <p>The script is a small interactive Python program in <code>time.py</code>. It asks for one assignment name per line at the <code>&gt;</code> prompt, then asks how many minutes each one will take, then prints a single total: <code>It will take you X minutes to complete your homework.</code></p>
 <p>The word <code>done</code> does double duty. Typed in any case, it is both the last thing you enter in the list and the signal that closes it. The word itself is never counted as an assignment, blank lines are skipped, and ending the input, for example with Ctrl-D, closes the list the same way.</p>
 <div class="blade"></div>
@@ -81,7 +82,7 @@ It will take you 30 minutes to complete your homework.</pre>
 <p><a href="https://github.com/Epsilon0xCell/Homework-Time-Calculator/tree/main/Homework-Time-Calculator-Visuals">The visuals folder in the repo</a></p>
 <img class="shot" src="https://raw.githubusercontent.com/Epsilon0xCell/Homework-Time-Calculator/main/Homework-Time-Calculator-Visuals/flowchart.png" alt="Flowchart from the repo visuals folder">
 </main>
-<footer>Homework-Time-Calculator, kept at the forest edge. Fonts: MatrixType (CC0 1.0, license beside the font file) and Alegreya Sans (SIL Open Font License 1.1).</footer>
+<footer>Homework-Time-Calculator, kept on the school desk. Fonts: Bree Serif and Lato, self-hosted (SIL Open Font License 1.1, licenses beside the font files).</footer>
 </div>
 </body>
 </html>
